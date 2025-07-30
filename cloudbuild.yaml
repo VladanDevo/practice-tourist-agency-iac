@@ -1,0 +1,12 @@
+# This pipeline runs terraform apply when changes are pushed to main
+steps:
+- name: 'hashicorp/terraform:1.8.5' # Use the official Terraform image
+  entrypoint: 'sh'
+  args:
+  - '-c'
+  - |
+    terraform init
+    terraform apply -auto-approve
+
+# Timeout after 20 minutes
+timeout: '1200s'
