@@ -1,4 +1,3 @@
-# This pipeline runs terraform apply when changes are pushed to main
 steps:
 - name: 'hashicorp/terraform:1.8.5'
   entrypoint: 'sh'
@@ -8,9 +7,7 @@ steps:
     terraform init
     terraform apply -auto-approve
 
-# Timeout after 20 minutes
 timeout: '1200s'
 
-# Add this section to fix the error
 options:
   logging: CLOUD_LOGGING_ONLY
