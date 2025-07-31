@@ -21,6 +21,7 @@ resource "google_sql_database_instance" "sql_instance" {
   
   settings {
     tier = "db-custom-1-3840"
+    edition = "ENTERPRISE"
     disk_size = 10
     disk_type = "PD_SSD"
     ip_configuration {
