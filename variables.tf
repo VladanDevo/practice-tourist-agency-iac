@@ -27,3 +27,9 @@ variable "backend_image_path" {
   type        = string
   default     = "europe-west3-docker.pkg.dev/sara-sandbox-interns/vladan-backend-repo/vladan-tourist-agency-backend@sha256:786a8b98a2d7e7af46ba8615cf6729be3d6cc98d0ce5b40da30cd242e84bf5d8"
 }
+
+variable "frontend_image_path" {
+  description = "The full path to the backend Docker image."
+  type        = string
+  default     = "europe-west3-docker.pkg.dev/sara-sandbox-interns/vladan-frontend-repo/vladan-tourist-agency-frontend@sha256:19002f6f4283dde36cde6972afff4e8eccdb211e174d01861d3b2afc7c4d83e7"
+}
