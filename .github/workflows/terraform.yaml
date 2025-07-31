@@ -21,10 +21,10 @@ jobs:
      
       - name: 'Checkout'
         uses: 'actions/checkout@v4'
-        
-      - name: 'Debug Repository Name'
-        run: echo "The job is running in repository: ${{ github.repository }}"
 
+      - name: 'Debug Repository Name'
+        run: echo "Job is running in: ${{ github.repository }}"
+      
       - name: 'Authenticate to Google Cloud'
         id: 'auth'
         uses: 'google-github-actions/auth@v2'
