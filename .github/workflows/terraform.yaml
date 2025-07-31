@@ -1,0 +1,49 @@
+name: 'Terraform CI/CD'
+
+# Run on pushes to the main branch and on any pull request
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+
+# Permissions needed for OIDC authentication
+permissions:
+  contents: 'read'
+  id-token: 'write'
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: 'ubuntu-latest'
+    
+    steps:
+      # 1. Check out your repository code
+      - name: 'Checkout'
+        uses: 'actions/checkout@v4'
+
+      # 2. Authenticate to Google Cloud
+      - name: 'Authenticate to Google Cloud'
+        id: 'auth'
+        uses: 'google-github-actions/auth@v2'
+        with:
+          workload_identity_provider: 'projects/53494160780/locations/global/workloadIdentityPools/vladan-ga-pool/providers/vladan-ga-provider'
+          service_account: 'vladan-iac-terraform-deployer@sara-sandbox-interns.iam.gserviceaccount.com'
+
+      # 3. Setup Terraform
+      - name: 'Setup Terraform'
+        uses: 'hashicorp/setup-terraform@v3'
+
+      # 4. Terraform Init
+      - name: 'Terraform Init'
+        run: 'terraform init'
+
+      # 5. Terraform Plan (only runs on Pull Requests)
+      - name: 'Terraform Plan'
+        run: 'terraform plan -no-color'
+        if: github.event_name == 'pull_request'
+
+      # 6. Terraform Apply (only runs on pushes to main)
+      - name: 'Terraform Apply'
+        run: 'terraform apply -auto-approve -no-color'
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
