@@ -33,7 +33,7 @@ resource "google_sql_database_instance" "sql_instance" {
     }
 
     maintenance_window {
-      day = 0
+      day = 7
       hour = 0
       update_track = "stable"
     }
