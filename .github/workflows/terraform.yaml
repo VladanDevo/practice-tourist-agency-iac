@@ -23,7 +23,8 @@ jobs:
         uses: 'actions/checkout@v4'
 
       - name: 'Debug Repository Name'
-        run: echo "Job is running in: ${{ github.repository }}"
+        run: |
+          echo "The job is running in repository: ${{ github.repository }}"
       
       - name: 'Authenticate to Google Cloud'
         id: 'auth'
