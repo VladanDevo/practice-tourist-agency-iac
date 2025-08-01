@@ -48,7 +48,7 @@ jobs:
         run: 'terraform apply -auto-approve -no-color'
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 
-        - name: 'Trigger Backend Cloud Build Pipeline'
+      - name: 'Trigger Backend Cloud Build Pipeline'
         if: success() 
         run: |-
           echo "Terraform apply successful. Triggering the backend deployment."
