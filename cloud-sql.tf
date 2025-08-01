@@ -14,6 +14,7 @@ resource "google_project_service" "secretmanager" {
 
 resource "google_sql_database_instance" "sql_instance" {
   depends_on = [google_project_service.sqladmin]
+  deletion_protection=false
 
   name             = "vladan-database"
   database_version = "POSTGRES_17"
@@ -39,7 +40,6 @@ resource "google_sql_database_instance" "sql_instance" {
       update_track = "stable"
     }
 
-    deletion_protection_enabled  = true
     retain_backups_on_delete     = true
   }
 }

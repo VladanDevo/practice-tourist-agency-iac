@@ -3,7 +3,8 @@ resource "google_cloud_run_v2_service" "frontend_service" {
   name     = "vladan-tourist-agency-frontend"
   location = var.gcp_project_region
   ingress  = "INGRESS_TRAFFIC_ALL"
-
+  deletion_protection=false
+  
   traffic {
     type    = "TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST"
     percent = 100
