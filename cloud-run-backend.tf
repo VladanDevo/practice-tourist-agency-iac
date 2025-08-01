@@ -20,7 +20,7 @@ resource "google_cloud_run_v2_service" "backend_service" {
     service_account = var.default_sa_email
 
     containers {
-      image = var.backend_image_path
+      image = "us-docker.pkg.dev/cloudrun/container/hello"
       
       ports {
         container_port = 8080

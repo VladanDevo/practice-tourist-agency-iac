@@ -47,3 +47,15 @@ jobs:
       - name: 'Terraform Apply'
         run: 'terraform apply -auto-approve -no-color'
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+        - name: 'Trigger Backend Cloud Build Pipeline'
+        if: success() 
+        run: |-
+          echo "Terraform apply successful. Triggering the backend deployment."
+          gcloud builds triggers run f1d484d9-ddb8-4e90-8be5-30994f48 --branch=main
+
+      - name: 'Trigger Frontend Cloud Build Pipeline'
+        if: success()
+        run: |-
+          echo "Triggering the frontend deployment."
+          gcloud builds triggers run 56c515db-1787-4557-93bc-d2b250a57d41 --branch=main
