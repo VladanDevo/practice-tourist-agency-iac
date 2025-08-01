@@ -51,7 +51,7 @@ jobs:
         if: success() 
         run: |-
           echo "Terraform apply successful. Triggering the backend deployment."
-          gcloud builds triggers run f1d484d9-ddb8-4e90-8be5-30994f48 --branch=main
+          gcloud builds triggers run f1d484d9-ddb8-4e90-8be5-30994f48eaeb --branch=main
 
       - name: 'Trigger Frontend Cloud Build Pipeline'
         if: success()
